@@ -34,6 +34,11 @@ export function Home() {
 		const roomData = await get(child(roomRef, `rooms/${roomId}`))
 			.then((snapshot) => {
 				if (snapshot.exists()) {
+					if (snapshot.val().endedAt) {
+						alert('Sala Já encerrada')
+						return
+					}
+
 					return snapshot.val()
 				} else {
 					alert('No data available')
